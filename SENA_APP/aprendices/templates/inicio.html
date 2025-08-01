@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - SENA APP{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="welcome-section">
+        <h1>Bienvenido a SENA APP</h1>
+        <p>Sistema de Gestión de Aprendices del Servicio Nacional de Aprendizaje</p>
+        <hr>
+        <p>Administra y consulta la información de los aprendices e instructores de manera eficiente.</p>
+        <div class="button-group">
+            <a href="{% url 'aprendices:lista_aprendices' %}" class="button">Ver Aprendices</a>
+            <a href="{% url 'instructores:lista_instructores' %}" class="button">Ver Instructores</a>
+            <a href="{% url 'programas:lista_programas' %}" class="button">Ver Programas</a>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="info-card">
+            <h5>Lista de Aprendices</h5>
+            <p>Consulta todos los aprendices registrados en el sistema.</p>
+            <a href="{% url 'aprendices:lista_aprendices' %}" class="button">Ver Lista</a>
+        </div>
+        <div class="info-card">
+            <h5>Lista de Instructores</h5>
+            <p>Consulta todos los instructores registrados en el sistema.</p>
+            <a href="{% url 'instructores:lista_instructores' %}" class="button">Ver Lista</a>
+        </div>
+        <div class="info-card">
+            <h5>Lista de Programas</h5>
+            <p>Consulta todos los programas registrados en el sistema.</p>
+            <a href="{% url 'programas:lista_programas' %}" class="button">Ver Lista</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        padding: 2rem;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .welcome-section {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        margin-bottom: 2rem;
+    }
+
+    .button-group {
+        margin-top: 1rem;
+        display: flex;
+        gap: 1rem;
+    }
+
+    .button {
+        background: #059669;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        text-align: center;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 0.3s ease;
+    }
+
+    .button:hover {
+        background: #10b981;
+    }
+
+    .info-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .info-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e5e7eb;
+    }
+
+    h5 {
+        margin-bottom: 0.5rem;
+        color: #064e3b;
+    }
+
+    p {
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock %}

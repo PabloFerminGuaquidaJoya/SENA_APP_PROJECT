@@ -1,48 +1,46 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %}Lista de Aprendices SENA - SENA APP{% endblock %}
+{% block title %}Lista de Programas SENA - SENA APP{% endblock %}
 
-{% block content %} 
+{% block content %}
 <div class="container">
     <div class="header">
-        <h2>Lista de Aprendices SENA</h2>
+        <h2>Lista de Programas que el SENA ofrece</h2>
         <div class="header-info">
-            <span>Total: {{ total_aprendices }} aprendices</span>
-            <a href="{% url 'admin:aprendices_aprendiz_add' %}" class="button">Nuevo Aprendiz</a>
+            <span>Total: {{ total_programas }} Programas</span>
+            <a href="{% url 'admin:programas_programa_add' %}" class="button">Nuevo Programa</a>
         </div>
     </div>
 
-    {% if lista_aprendices %}
+    {% if lista_programas %}
     <div class="table-responsive">
-        <table>
+        <table class="table">
             <thead>
                 <tr>
-                    <th>Documento</th>
-                    <th>Nombre Completo</th>
-                    <th>Correo</th>
-                    <th>Teléfono</th>
-                    <th>Ciudad</th>
-                    <th>Programa</th>
-                    <th>Fecha Nacimiento</th>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Nivel Formación</th>
+                    <th>Modalidad</th>
+                    <th>Meses</th>
+                    <th>Descripción</th>
+                    <th>Centro Formación</th>
+                    <th>Regional</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                {% for aprendiz in lista_aprendices %}
+                {% for programa in lista_programas %}
                 <tr>
-                    <td><strong>{{ aprendiz.documento_identidad }}</strong></td>
-                    <td>{{ aprendiz.nombre_completo }}</td>
+                    <td><strong>{{ programa.codigo }}</strong></td>
+                    <td>{{ programa.nombre }}</td>
+                    <td>{{ programa.nivel_formacion }}</td>
+                    <td>{{ programa.modalidad }}</td>
+                    <td>{{ programa.duracion_meses }}</td>
+                    <td>{{ programa.descripcion }}</td>
+                    <td>{{ programa.centro_formacion }}</td>
+                    <td>{{ programa.regional }}</td>
                     <td>
-                        <a href="mailto:{{ aprendiz.correo }}">{{ aprendiz.correo }}</a>
-                    </td>
-                    <td>{{ aprendiz.telefono }}</td>
-                    <td>{{ aprendiz.ciudad }}</td>
-                    <td>
-                        <small>{{ aprendiz.programa }}</small>
-                    </td>
-                    <td>{{ aprendiz.fecha_nacimiento|date:"d/m/Y" }}</td>
-                    <td>
-                        <a href="{% url 'admin:aprendices_aprendiz_change' aprendiz.pk %}" class="edit-link">Editar</a>
+                        <a href="{% url 'admin:programas_programa_change' programa.pk %}" class="edit-link">Editar</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -51,11 +49,11 @@
     </div>
     {% else %}
     <div class="empty-state">
-        <h4>No hay aprendices registrados</h4>
-        <p>Aún no se han registrado aprendices en el sistema.</p>
+        <h4>No hay Programas registrados</h4>
+        <p>Aún no se han registrado Programas en el sistema.</p>
         <hr>
         <p>
-            <a href="{% url 'admin:aprendices_aprendiz_add' %}" class="button">Registrar Primer Aprendiz</a>
+            <a href="{% url 'admin:programas_programa_add' %}" class="button">Registrar Primer Programa</a>
         </p>
     </div>
     {% endif %}

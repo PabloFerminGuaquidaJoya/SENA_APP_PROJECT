@@ -1,48 +1,52 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %}Lista de Aprendices SENA - SENA APP{% endblock %}
+{% block title %}Lista de Instructores SENA - SENA APP{% endblock %}
 
-{% block content %} 
+{% block content %}
 <div class="container">
     <div class="header">
-        <h2>Lista de Aprendices SENA</h2>
+        <h2>Lista de Instructores SENA</h2>
         <div class="header-info">
-            <span>Total: {{ total_aprendices }} aprendices</span>
-            <a href="{% url 'admin:aprendices_aprendiz_add' %}" class="button">Nuevo Aprendiz</a>
+            <span>{{ total_instructores }} Instructores</span>
+            <a href="{% url 'admin:instructores_instructor_add' %}" class="button">Nuevo Instructor</a>
         </div>
     </div>
 
-    {% if lista_aprendices %}
+    {% if lista_instructores %}
     <div class="table-responsive">
         <table>
             <thead>
                 <tr>
                     <th>Documento</th>
+                    <th>Tipo Documento</th>
                     <th>Nombre Completo</th>
                     <th>Correo</th>
                     <th>Teléfono</th>
                     <th>Ciudad</th>
-                    <th>Programa</th>
+                    <th>Dirección</th>
+                    <th>Nivel Educativo</th>
                     <th>Fecha Nacimiento</th>
+                    <th>Especialidad</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                {% for aprendiz in lista_aprendices %}
+                {% for instructor in lista_instructores %}
                 <tr>
-                    <td><strong>{{ aprendiz.documento_identidad }}</strong></td>
-                    <td>{{ aprendiz.nombre_completo }}</td>
+                    <td><strong>{{ instructor.documento_identidad }}</strong></td>
+                    <td>{{ instructor.tipo_documento }}</td>
+                    <td>{{ instructor.nombre_completo }}</td>
                     <td>
-                        <a href="mailto:{{ aprendiz.correo }}">{{ aprendiz.correo }}</a>
+                        <a href="mailto:{{ instructor.correo }}">{{ instructor.correo }}</a>
                     </td>
-                    <td>{{ aprendiz.telefono }}</td>
-                    <td>{{ aprendiz.ciudad }}</td>
+                    <td>{{ instructor.telefono }}</td>
+                    <td>{{ instructor.ciudad }}</td>
+                    <td>{{ instructor.direccion }}</td>
+                    <td>{{ instructor.nivel_educativo }}</td>
+                    <td>{{ instructor.fecha_nacimiento|date:"d/m/Y" }}</td>
+                    <td>{{ instructor.especialidad }}</td>
                     <td>
-                        <small>{{ aprendiz.programa }}</small>
-                    </td>
-                    <td>{{ aprendiz.fecha_nacimiento|date:"d/m/Y" }}</td>
-                    <td>
-                        <a href="{% url 'admin:aprendices_aprendiz_change' aprendiz.pk %}" class="edit-link">Editar</a>
+                        <a href="{% url 'admin:instructores_instructor_change' instructor.pk %}" class="edit-link">Editar</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -51,11 +55,11 @@
     </div>
     {% else %}
     <div class="empty-state">
-        <h4>No hay aprendices registrados</h4>
-        <p>Aún no se han registrado aprendices en el sistema.</p>
+        <h4>No hay Instructores registrados</h4>
+        <p>Aún no se han registrado Instructores en el sistema.</p>
         <hr>
         <p>
-            <a href="{% url 'admin:aprendices_aprendiz_add' %}" class="button">Registrar Primer Aprendiz</a>
+            <a href="{% url 'admin:aprendices_aprendiz_add' %}" class="button">Registrar Primer Instructor</a>
         </p>
     </div>
     {% endif %}
